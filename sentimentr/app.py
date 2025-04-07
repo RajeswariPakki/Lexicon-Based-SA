@@ -1,10 +1,9 @@
-# app.py code
-
 from flask import Flask, render_template, request
 from sentimentr import Sentiment  # Assuming your Sentiment class is in sentimentr.py
+import os
 
 app = Flask(__name__)
-    
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     result = None
@@ -17,7 +16,7 @@ def index():
         input_text = request.form.get("input_text")
 
         # Create an instance of Sentiment
-        s = Sentiment
+        s = Sentiment()
 
         if input_type == "single":
             # Single text input: Process and get detailed output
@@ -45,4 +44,5 @@ def index():
     )
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
