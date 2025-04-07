@@ -16,7 +16,7 @@ def index():
         input_text = request.form.get("input_text")
 
         # Create an instance of Sentiment
-        s = Sentiment
+        s = Sentiment()
 
         if input_type == "single":
             # Single text input: Process and get detailed output
